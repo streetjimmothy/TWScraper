@@ -15,7 +15,6 @@ import * as _url from 'url';
 import * as mongodb from "mongodb";
 
 //#region Twitter definitions
-const bearertoken = "AAAAAAAAAAAAAAAAAAAAAIfbhgEAAAAALIw5G91CHFRdTBEOXimdx2iezs0%3DIJmqT2Wf16PrFfzjxgGM4OeI3EJYnsH51Rzwp6Nc67M5mQMvOG";
 const BASE_TW_URI = `https://api.twitter.com/2/tweets/search/all?max_results=500&tweet.fields=attachments,author_id,conversation_id,created_at,entities,geo,id,in_reply_to_user_id,lang,public_metrics,possibly_sensitive,referenced_tweets,reply_settings,source,text,withheld&user.fields=created_at,description,entities,id,location,name,pinned_tweet_id,profile_image_url,protected,public_metrics,url,username,verified,withheld`;
 const tw_expansions = [	//TODO: make query configurable
 	"author_id",
@@ -28,7 +27,6 @@ const tw_expansions = [	//TODO: make query configurable
 //#endregion Twitter definitions
 
 //#region DB connection
-const DBURI = "mongodb+srv://admin:bl9SCUOtALJmrBdk@twitterdata.yq2oqfy.mongodb.net/?retryWrites=true&w=majority";
 let tw_coll: mongodb.Collection<mongodb.Document>;
 let tu_coll: mongodb.Collection<mongodb.Document>;
 let tq_coll: mongodb.Collection<mongodb.Document>;
