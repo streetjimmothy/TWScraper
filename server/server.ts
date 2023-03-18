@@ -40,13 +40,13 @@ async function DBconnect() {
 		tq_coll = client.db("Queries").collection("queries");
 	} catch (err) {
 		DEBUG.log("Could not connect to DB. Retrying...");
-		dbretrytimeout = dbretrytimeout*2;
-		if(dbretrytimeout > 100){
+		dbretrytimeout = dbretrytimeout * 2;
+		if (dbretrytimeout > 100) {
 			DEBUG.log("Could not connect to database.");
 			console.log(err);
-			throw(err);
+			throw (err);
 		}
-		await setTimeout(DBconnect, dbretrytimeout*1000)
+		await setTimeout(DBconnect, dbretrytimeout * 1000)
 	}
 }
 
@@ -127,10 +127,10 @@ class TWQuery {
 		this.pagination_token = doc.pagination_token;
 		this.next_run = new Date();
 		this.updateURI();
-		
+
 	}
 
-	updateURI(){
+	updateURI() {
 		this.URI = BASE_TW_URI + `&query=${this.query}`;
 		if (this.sample_method == SampleMethods.Random) {
 			let start_time = new Date(Math.random() * ((this.end_time!.valueOf() - this.start_time!.valueOf()) + this.start_time!.valueOf()))
@@ -203,7 +203,7 @@ class TWQuery {
 					} catch (err: any) {
 						if (err.code == 11000) {	//duplicate key error
 							num_tweets -= err.writeErrors.length;
-						}else{
+						} else {
 							DEBUG.log("Error saving tweets to database...")
 							console.log(err);
 							return;	//returning here should cause the same query to run next tick
@@ -242,10 +242,10 @@ async function init() {
 	DEBUG.log("Server started.");
 }
 
-async function run(){
+async function run() {
 	//list of TWQueries, iterate on a loop, call run on each and then sleep
 	for (let query of queries) {
-		if(query.next_run! < new Date()){
+		if (query.next_run! < new Date()) {
 			await query.run();
 		}
 	}

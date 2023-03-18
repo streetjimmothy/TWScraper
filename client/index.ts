@@ -44,7 +44,7 @@ class TweetQueryVM {
 
 		//need to reformat date elements slightly for HTML date picker
 		this.queries = queries.map(
-			(q:any) => {
+			(q: any) => {
 				return new TweetQuery(q);
 				// q["start_time"] = q["start_time"].replaceAll("Z", "");
 				// q["end_time"] = q["end_time"].replaceAll("Z", "");
@@ -61,7 +61,7 @@ class TweetQueryVM {
 	}
 
 	//param should be by ID?
-	removeQuery(query:TweetQuery) {
+	removeQuery(query: TweetQuery) {
 		this.queries.remove(query)
 	}
 }
